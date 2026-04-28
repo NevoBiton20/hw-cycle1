@@ -3,6 +3,7 @@
 
 
 import networkx as nx, numpy as np
+import math
 
 def WeightedDiGraph(*edges: list[tuple[int,int,float]])->nx.DiGraph:
     """
