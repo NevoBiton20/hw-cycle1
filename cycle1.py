@@ -1,6 +1,7 @@
 # import subprocess, sys
 # subprocess.check_call([sys.executable, "-m", "pip", "install", "networkx>=3.4"], stdout=subprocess.DEVNULL)
 
+
 import networkx as nx, numpy as np
 
 def WeightedDiGraph(*edges: list[tuple[int,int,float]])->nx.DiGraph:
