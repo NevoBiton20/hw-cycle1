@@ -25,13 +25,24 @@ def has_cycle1(graph: nx.DiGraph)->bool:
     >>> has_cycle1(WeightedDiGraph([0,1,0.55],[1,2,0.66],[2,0,0.77]))
     True
     """
-    # Your code here
-    pass
+    log_graph = nx.DiGraph()
+
+    log_graph.add_nodes_from(graph.nodes)
+
+    for u, v, data in graph.edges(data=True):
+        weight = data.get("weight", 1)
+
+        if weight <= 0:
+            raise ValueError("All edge weights must be positive.")
+
+        log_graph.add_edge(u, v, weight=math.log(weight))
+
+    return nx.negative_edge_cycle(log_graph, weight="weight")
 
 
 if __name__ == '__main__':
-    # edges = eval(input())
-    # graph = WeightedDiGraph(*edges)
-    # print(has_cycle1(graph))
+    edges = eval(input())
+    graph = WeightedDiGraph(*edges)
+    print(has_cycle1(graph))
     import doctest
     print (doctest.testmod())
